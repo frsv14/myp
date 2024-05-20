@@ -20,7 +20,7 @@ export async function main() {
   app.use(express.static("public"));
   app.use(express.json());
 
-  const db = await mysql.createConnection({
+  const db = await mysql.createConnection({ //CREATE DATABASE databas; //USE databas; //CREATE TABLE msg (msg TEXT, created DATE, user TEXT);
     host: "127.0.0.1",
     user: "freddy",
     password: "abc",
