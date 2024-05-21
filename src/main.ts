@@ -20,7 +20,8 @@ export async function main() {
   app.use("/", express.static("public"));
   app.use(express.json());
 
-  const db = await mysql.createConnection({ //CREATE DATABASE databas; //USE databas; //CREATE TABLE msg (msg TEXT, created DATE, user TEXT);
+  const db = await mysql.createConnection({
+    //CREATE DATABASE databas; //USE databas; //CREATE TABLE msg (msg TEXT, created DATE, user TEXT);
     host: "127.0.0.1",
     user: "freddy",
     password: "abc",
@@ -43,6 +44,41 @@ export async function main() {
 
   app.post("/input/msg", async function (req, res) {
     res.send(req.body.msg);
+  });
+
+  app.get("/login", async function (req, res) {
+    if (
+      req.query &&
+      typeof req.query.user === "string" &&
+      typeof req.query.password === "string"
+    ) {
+      const user_name = req.query.user;
+      const password = crypto
+        .createHash("md5")
+        .update(String(req.query.password))
+        .digest("hex");
+      let question = "SELECT name,password FROM user WHERE name =?";
+      //console.log(user_name);
+      //console.log(req.query.password);
+      //console.log(db.format(question, [user_name]));
+      const user_answer = await db.execute(question, [user_name]);
+      const password_from_database = user_answer.values().next()
+        .value[0].password;
+
+      if (console.log(password_from_database) === console.log(password)) {
+        const token = uuid();
+        console.log(token);
+        token_storage[token] = user_name;
+        console.log("evenmore hu?")
+        res.cookie("login", token, { maxAge: 10000000 });
+        res.send("Du är inloggad!");
+      } else {
+        console.log("hu?")
+        res.send("Fel lösenord eller användarnamn!");
+      }
+    } else {
+      res.send("Du har inte skrivit in anvädnarnamn eller lösenord!");
+    }
   });
 
   app.get("/input", async function bees(req: any, res: any) {
