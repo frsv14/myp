@@ -30,7 +30,7 @@
     "url": "GIT_PATH"
   },
   "bugs": {},
-  "author": "AUTHOR",
+  "author": "frsv14",
   "devDependencies": {
     "@types/chai": "^4.3.9",
     "@types/chai-string": "^1.4.4",
