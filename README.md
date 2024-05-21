@@ -6,7 +6,7 @@ Detta kommer också vara en grund för utvekling av olika aplicationer.
 
 SETUP:
 
-npm install 
-npm run build
-npm run start
+npm install; 
+npm run build;
+npm run start;
 
