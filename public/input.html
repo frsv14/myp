@@ -10,15 +10,19 @@
     <div id="container">
       <h1>Skriv ett medelaande till alla!</h1>
       <div>
-        <form id="form" onsubmit="" action="/input">
+        <form id="form" method="get" action="/input">
           <input
             type="text"
             placeholder="bithc"
             class="msg"
             name="msg"
             id="msg"
+            value="msg"
           />
-          <input type="submit" value="msg" />
+          <input type="submit" value="publich"/>
+            <button formaction="/dist/main.js/msg" type="button" value="se vad du har satt in">press to see what you have</button>
+         
+          
         </form>
         <script></script>
       </div>

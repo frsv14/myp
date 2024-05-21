@@ -17,16 +17,16 @@ import * as path from "path";
 export async function main() {
   const app = express();
 
-  app.use("/", static("public"));
+  app.use("/", express.static("public"));
   app.use(express.json());
-/*
+
   const db = await mysql.createConnection({ //CREATE DATABASE databas; //USE databas; //CREATE TABLE msg (msg TEXT, created DATE, user TEXT);
     host: "127.0.0.1",
     user: "freddy",
     password: "abc",
     database: "databas",
   });
-*/
+
   app.use(logger);
 
   // If you need to parse url.
@@ -35,7 +35,7 @@ export async function main() {
   app.get("/msg", async function (req, res) {
     let question = "SELECT * FROM msg;";
     console.log(question);
-   // const result = await db.execute(question);
+    const result = await db.execute(question);
     console.log(db);
     const data = result.values().next().value;
     res.send(data);
@@ -52,7 +52,7 @@ export async function main() {
     let dd = d.getDate();
     let yy = y.getFullYear();
     let mm = m.getMonth();
-    const msg = await req.body.msg;
+    const msg = await req.query.msg;
     const user = "'krm'";
     const created = ["'" + yy + "-" + mm + "-" + dd + "'"];
     console.log(msg);
@@ -65,7 +65,7 @@ export async function main() {
       user +
       " );";
 
-    //const result = await db.execute(question);
+    const result = await db.execute(question);
     console.log(question);
 
     return res.send(" OK! " + "  sending:" + msg);
