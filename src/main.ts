@@ -62,26 +62,32 @@ export async function main() {
       //console.log(req.query.password);
       //console.log(db.format(question, [user_name]));
       const user_answer = await db.execute(question, [user_name]);
-      const password_from_database = user_answer.values().next()
-        .value[0].password;
+      if(user_answer[0] === ){
+         res.send("fel användarnamn");
+      }else{
+        const password_from_database = user_answer.values().next().value[0].password;
 
-      if (console.log(password_from_database) === console.log(password)) {
-        const token = uuid();
-        console.log(token);
-        token_storage[token] = user_name;
-        console.log("evenmore hu?")
-        res.cookie("login", token, { maxAge: 10000000 });
-        res.send("Du är inloggad!");
-      } else {
-        console.log("hu?")
-        res.send("Fel lösenord eller användarnamn!");
+        if (console.log(password_from_database) === console.log(password)) {
+          const token = uuid();
+          console.log(token);
+          token_storage[token] = user_name;
+         console.log("evenmore hu?")
+          res.cookie("login", token, { maxAge: 1000000000 });
+          res.send("Du är inloggad!");
+      
+        } else {
+          console.log("hu?")
+          res.send("Fel lösenord eller användarnamn!");
+        }
       }
     } else {
       res.send("Du har inte skrivit in anvädnarnamn eller lösenord!");
     }
   });
 
-  app.get("/input", async function bees(req: any, res: any) {
+  app.get("/input", async function (req: any, res: any) {
+    
+    
     let m = new Date();
     let y = new Date();
     let d = new Date();
@@ -105,6 +111,8 @@ export async function main() {
     console.log(question);
 
     return res.send(" OK! " + "  sending:" + msg);
+
+    
   });
 
   app.post("/input", async function (req, res) {

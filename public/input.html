@@ -4,7 +4,6 @@
     <title>Skriv ett medelande!</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" type="text/css" href="css/base.css" />
-    <script type="text/javascript" src="../dist/main.js"></script>
   </head>
   <body name="body" class="body" id="body">
     <div id="container">
@@ -28,7 +27,20 @@
             press to see what you have
           </button>
         </form>
-        <script></script>
+        <script>
+          if(document.cookie){
+            
+          }else{
+            let aw = confirm("You need to bee logged in to use this feature. navigate to login on home screen.");
+            console.log(aw);
+
+            if (document.cookie && aw === false){
+              history.back();
+            } else {
+              history.back();
+            }
+          }
+       </script>
       </div>
     </div>
   </body>
