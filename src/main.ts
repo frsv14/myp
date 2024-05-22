@@ -33,6 +33,38 @@ export async function main() {
   // If you need to parse url.
   app.use(express.urlencoded({ extended: false }));
 
+  app.get("/input", async function (req: any, res: any) {
+    const user_name = req.cookie;
+
+    console.log(user_name)
+    
+    let m = new Date();
+    let y = new Date();
+    let d = new Date();
+    let dd = d.getDate();
+    let yy = y.getFullYear();
+    let mm = m.getMonth();
+    const msg = req.query.msg;
+    const user = "'"+req.query.user+"'";
+    const created = ["'" + yy + "-" + mm + "-" + dd + "'"];
+    console.log(msg);
+    const question =
+      "INSERT INTO msg (msg, created, user) VALUES ('" +
+      msg +
+      "', " +
+      created +
+      ", " +
+      user +
+      " );";
+
+    const result = await db.execute(question);
+    console.log(question);
+
+    return res.send(" OK! " + "  sending:" + msg);
+
+    
+  });
+
   app.get("/msg", async function (req, res) {
     let question = "SELECT * FROM msg;";
     console.log(question);
@@ -62,17 +94,23 @@ export async function main() {
       //console.log(req.query.password);
       //console.log(db.format(question, [user_name]));
       const user_answer = await db.execute(question, [user_name]);
-      if(user_answer[0] === ){
+      const output = user_answer[0].some((element :any) => true); // DET SKA VA SÅ   
+      
+      if(output ===  false){
          res.send("fel användarnamn");
       }else{
         const password_from_database = user_answer.values().next().value[0].password;
-
-        if (console.log(password_from_database) === console.log(password)) {
+        const encryptdbpass = crypto
+        .createHash("md5")
+        .update(String(password_from_database))
+        .digest("hex");
+        
+        if (encryptdbpass === password) {
           const token = uuid();
           console.log(token);
           token_storage[token] = user_name;
-         console.log("evenmore hu?")
-          res.cookie("login", token, { maxAge: 1000000000 });
+          console.log("evenmore hu?")
+          res.cookie("login", token, { maxAge: 10000 });
           res.send("Du är inloggad!");
       
         } else {
@@ -83,36 +121,6 @@ export async function main() {
     } else {
       res.send("Du har inte skrivit in anvädnarnamn eller lösenord!");
     }
-  });
-
-  app.get("/input", async function (req: any, res: any) {
-    
-    
-    let m = new Date();
-    let y = new Date();
-    let d = new Date();
-    let dd = d.getDate();
-    let yy = y.getFullYear();
-    let mm = m.getMonth();
-    const msg = await req.query.msg;
-    const user = "'krm'";
-    const created = ["'" + yy + "-" + mm + "-" + dd + "'"];
-    console.log(msg);
-    const question =
-      "INSERT INTO msg (msg, created, user) VALUES ('" +
-      msg +
-      "', " +
-      created +
-      ", " +
-      user +
-      " );";
-
-    const result = await db.execute(question);
-    console.log(question);
-
-    return res.send(" OK! " + "  sending:" + msg);
-
-    
   });
 
   app.post("/input", async function (req, res) {
