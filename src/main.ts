@@ -88,9 +88,6 @@ export async function main() {
         .update(String(req.query.password))
         .digest("hex");
       let question = "SELECT name,password FROM user WHERE name =?";
-      //console.log(user_name);
-      //console.log(req.query.password);
-      //console.log(db.format(question, [user_name]));
       const user_answer = await db.execute(question, [user_name]);
       const output = user_answer[0].some((element :any) => true); // DET SKA VA SÅ   
       
