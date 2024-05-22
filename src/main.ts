@@ -34,9 +34,7 @@ export async function main() {
   app.use(express.urlencoded({ extended: false }));
 
   app.get("/input", async function (req: any, res: any) {
-    const user_name = req.cookie;
-
-    console.log(user_name)
+    
     
     let m = new Date();
     let y = new Date();
@@ -110,7 +108,7 @@ export async function main() {
           console.log(token);
           token_storage[token] = user_name;
           console.log("evenmore hu?")
-          res.cookie("login", token, { maxAge: 10000 });
+          res.cookie("login", token, { maxAge: 1000000 });
           res.send("Du är inloggad!");
       
         } else {

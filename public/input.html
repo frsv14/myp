@@ -10,30 +10,25 @@
       <h1>Skriv ett medelaande till alla!</h1>
       <div>
         <form id="form" method="get" action="/input">
+          <h3>formeln</h3>
           <input
             type="text"
-            placeholder="bithc"
+            placeholder="meddelande"
             class="msg"
             name="msg"
             id="msg"
-            value="msg"
+            value=""
           />
+          <h3>Namn på formeln</h3>
           <input
             type="text"
-            placeholder="bithc"
+            placeholder="Användaranamn"
             class="user"
             name="user"
-            id="user"
-            value="från vem?"
+            id="textbox"
+            value=""
           />
           <input type="submit" value="publich" />
-          <button
-            formaction="/dist/main.js/msg"
-            type="button"
-            value="se vad du har satt in"
-          >
-            press to see what you have
-          </button>
         </form>
         <script>
           if(document.cookie){

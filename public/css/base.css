@@ -1,0 +1,39 @@
+
+#form {
+    border-style: solid;
+    border: 12px;
+    border-color: black;
+    border-width: 5px;
+
+}
+
+#msg {
+    border: 12px solid black;
+    padding: 12px 34px;
+    width: 60%;
+    box-sizing: border-box;
+
+}
+
+
+#sub {
+    margin: 100px;
+    font-size: larger;
+    border: 5px solid black;
+    background-color: rgb(255, 134, 134);
+    padding: 2%;
+    
+    
+}
+
+#container {    
+    background-color: rgb(220, 124, 124);
+    border: 12px solid black;
+    margin-left: auto;
+    padding: 12px;
+}
+
+body {
+    
+    background-color: rgb(167, 91, 91);
+}
