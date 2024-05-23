@@ -1,7 +1,7 @@
 {
   "name": "myp",
   "version": "0.0.1",
-  "description": "DESCRIPTION",
+  "description": "en mall och projekt som ska in till skolan",
   "main": "dist/main.js",
   "exports": "./dist/index.js",
   "type": "module",
@@ -27,7 +27,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "GIT_PATH"
+    "url": "https://github.com/frsv14/myp"
   },
   "bugs": {},
   "author": "frsv14",
