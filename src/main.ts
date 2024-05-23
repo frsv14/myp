@@ -21,16 +21,18 @@ export async function main() {
   app.use(express.json());
 
   const db = await mysql.createConnection({
-    //CREATE DATABASE databas; //USE databas; //CREATE TABLE msg (msg TEXT, created DATE, user TEXT);
+  
     host: "127.0.0.1",
-    user: "freddy",
-    password: "abc",
-    database: "databas",
+    
+    user: "freddy", //ditt användar namn
+    
+    password: "abc", //ditt lösen ord
+    
+    database: "databas", // vilken databas OBS! om du ändrar denna se till att den har tabellerna msg och user (se sql fil)
   });
 
   app.use(logger);
 
-  // If you need to parse url.
   app.use(express.urlencoded({ extended: false }));
 
   app.get("/input", async function (req: any, res: any) {
