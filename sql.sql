@@ -3,6 +3,7 @@
 -- 2. Skriv in alla uppgfter för databasen i varibeln db
 -- 3. skapa databasen via commandot:
 CREATE DATABASE databas;
+USE databas;
 -- 4. skapa de två tabellerna som behövs:
 CREATE TABLE msg (msg TEXT, created DATE, user TEXT);
 CREATE TABLE user (name TEXT, password TEXT);
