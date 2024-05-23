@@ -8,3 +8,6 @@ vara en grund för utvekling av olika aplicationer.
 SETUP:
 
 npm install; npm run build; npm run start;
+
+
+OBS! : READ SQL FILE
